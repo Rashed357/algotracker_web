@@ -1,13 +1,34 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>AlgoTracker</title>
+    <!-- This line tells the HTML to load your CSS file -->
+    <link rel="stylesheet" href="{% static 'tracker/style.css' %}">
 </head>
 <body>
     <h1>My Algorithmic Solutions</h1>
     
+    <!-- This is the new form. It sends a POST request to the server. -->
+    <form method="POST">
+        <!-- The CSRF token is a required security measure in Django to prevent hackers from forging form submissions -->
+        {% csrf_token %}
+        
+        <label>Problem Name:</label><br>
+        <input type="text" name="problem_name" placeholder="e.g., Watermelon" required><br><br>
+        
+        <label>Language:</label><br>
+        <input type="text" name="language" placeholder="e.g., C++" required><br><br>
+        
+        <label>Code:</label><br>
+        <textarea name="code" rows="10" cols="50" placeholder="Paste your code here..." required></textarea><br><br>
+        
+        <button type="submit">Save Solution</button>
+    </form>
+
+    <hr>
+    
     <ul>
-        <!-- This is a Django Template Loop. It mixes Python with HTML! -->
         {% for sol in solutions %}
             <li>
                 <strong>{{ sol.problem_name }}</strong> ({{ sol.language }}) <br>
