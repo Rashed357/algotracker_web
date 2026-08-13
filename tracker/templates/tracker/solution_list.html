@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AlgoTracker</title>
+</head>
+<body>
+    <h1>My Algorithmic Solutions</h1>
+    
+    <ul>
+        <!-- This is a Django Template Loop. It mixes Python with HTML! -->
+        {% for sol in solutions %}
+            <li>
+                <strong>{{ sol.problem_name }}</strong> ({{ sol.language }}) <br>
+                <pre>{{ sol.code }}</pre>
+            </li>
+        {% empty %}
+            <li>No solutions logged yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
